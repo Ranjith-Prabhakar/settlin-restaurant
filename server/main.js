@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/user.js'
 import '../imports/api/RestaurantPublications.js'
+import '../imports/api/RestaurantMethods.js'
 import { RestaurantCollection } from '../imports/api/RestaurantCollection.js';
 
 
