@@ -11,9 +11,7 @@ export function Login() {
                 alert(error.reason); // Show an error message if user already exists
             } else {
                 // alert('User registered successfully! User ID: ' + result);
-                console.log('result',result)
-                console.log('MOBILE',mobile)
-                Meteor.loginWithPassword(mobile,mobile)
+               Meteor.loginWithPassword(mobile,mobile)
             }
         });
     };

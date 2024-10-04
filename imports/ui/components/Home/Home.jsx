@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Card } from "../Card/Card"
 import {useSubscribe,useTracker} from 'meteor/react-meteor-data'
 import { RestaurantCollection } from "../../../api/RestaurantCollection"
@@ -10,9 +10,7 @@ export function Home(){
         return RestaurantCollection.find().fetch()
     })
 
-    useEffect(()=>{
-        console.log("restaurants",restaurants)
-    },[restaurants])
+    
 
     return (
         <>

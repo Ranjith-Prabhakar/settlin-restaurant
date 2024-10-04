@@ -9,12 +9,11 @@ import { Restaurant } from './components/Restaurant/Restaurant.jsx';
 
 export const App = () => {
   const user = useTracker(() => Meteor.user());
-console.log("user",user)
   return(
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/book_seat' element={user ? <Restaurant /> : <Login/> }/>
+      <Route path='/book_seat/:id' element={user ? <Restaurant /> : <Login/> }/>
     </Routes>
       
         
