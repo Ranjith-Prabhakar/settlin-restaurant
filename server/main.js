@@ -12,30 +12,43 @@ Meteor.startup(async () => {
          imageUrl:'/ROne.jpg',
          address:'123 Maple Street, Springfield, IL 62704, USA',
          tables:[
-            [
-                {seat:"T1S1",status:"not-booked",userId:''},
-                {seat:"T1S2",status:"not-booked",userId:''},
-                {seat:"T1S3",status:"not-booked",userId:''},
-                {seat:"T1S4",status:"not-booked",userId:''}
-            ],
-            [
-                {seat:"T2S1",status:"not-booked",userId:''},
-                {seat:"T2S2",status:"not-booked",userId:''},
-                {seat:"T2S3",status:"not-booked",userId:''},
-                {seat:"T2S4",status:"not-booked",userId:''}
-            ],
-            [
-                {seat:"T3S1",status:"not-booked",userId:''},
-                {seat:"T3S2",status:"not-booked",userId:''},
-                {seat:"T3S3",status:"not-booked",userId:''},
-                {seat:"T3S4",status:"not-booked",userId:''}
-            ],
-            [
-                {seat:"T4S1",status:"not-booked",userId:''},
-                {seat:"T4S2",status:"not-booked",userId:''},
-                {seat:"T4S3",status:"not-booked",userId:''},
-                {seat:"T4S4",status:"not-booked",userId:''}
-            ],
+            {
+                tableName:"Table-1",
+                seats:[
+                    {seat:"T1S1",status:"not-booked",userId:''},
+                    {seat:"T1S2",status:"not-booked",userId:''},
+                    {seat:"T1S3",status:"not-booked",userId:''},
+                    {seat:"T1S4",status:"not-booked",userId:''}
+                ]
+            },
+            {
+                tableName:"Table-2",
+                seats:[
+                    {seat:"T1S1",status:"not-booked",userId:''},
+                    {seat:"T1S2",status:"not-booked",userId:''},
+                    {seat:"T1S3",status:"not-booked",userId:''},
+                    {seat:"T1S4",status:"not-booked",userId:''}
+                ]
+            },
+            {
+                tableName:"Table-3",
+                seats:[
+                    {seat:"T1S1",status:"not-booked",userId:''},
+                    {seat:"T1S2",status:"not-booked",userId:''},
+                    {seat:"T1S3",status:"not-booked",userId:''},
+                    {seat:"T1S4",status:"not-booked",userId:''}
+                ]
+            },
+            {
+                tableName:"Table-4",
+                seats:[
+                    {seat:"T1S1",status:"not-booked",userId:''},
+                    {seat:"T1S2",status:"not-booked",userId:''},
+                    {seat:"T1S3",status:"not-booked",userId:''},
+                    {seat:"T1S4",status:"not-booked",userId:''}
+              
+                ]
+            } 
         ]
     },   
         {name:'Paradise',
