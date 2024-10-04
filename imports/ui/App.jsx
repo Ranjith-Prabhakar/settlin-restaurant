@@ -1,13 +1,23 @@
 import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
-import { One } from './component/One.jsx';
+import {Meteor} from 'meteor/meteor'
+import { useTracker } from "meteor/react-meteor-data";
+import { Login } from './components/Login/Login.jsx';
+import { Home } from './components/Home/Home.jsx';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { Restaurant } from './components/Restaurant/Restaurant.jsx';
 
-export const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello/>
-    <Info/>
-    <One />
-  </div>
-);
+
+export const App = () => {
+  const user = useTracker(() => Meteor.user());
+console.log("user",user)
+  return(
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Home />}/>
+      <Route path='/book_seat' element={user ? <Restaurant /> : <Login/> }/>
+    </Routes>
+      
+        
+    </BrowserRouter>
+  )
+};
