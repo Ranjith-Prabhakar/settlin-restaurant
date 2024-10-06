@@ -4,7 +4,7 @@ import './login.css';
 
 export function Login() {
     const [mobile, setMobile] = useState('');
-
+    const [loginMobile,setLoginMobile] = useState('')
     const handleRegister = () => {
         Meteor.call('createNewUser', { userName: mobile }, (error, result) => {
             if (error) {
@@ -16,8 +16,13 @@ export function Login() {
         });
     };
 
+    const handleLogin = ()=>{
+        Meteor.loginWithPassword(loginMobile,loginMobile)
+    }
+
     return (
         <div className="flex h-[100vh] w-[100vw] justify-center items-center">
+            {/* register */}
             <label htmlFor="mobile">
                 <input
                     type="text"
@@ -28,6 +33,18 @@ export function Login() {
                 />
             </label>
             <button onClick={handleRegister}>Register</button>
+
+            {/* login */}
+            <label htmlFor="mobile">
+                <input
+                    type="text"
+                    id="mobile"
+                    placeholder="Enter your mobile number"
+                    value={loginMobile}
+                    onChange={(e) => setLoginMobile(e.target.value)}
+                />
+            </label>
+            <button onClick={handleLogin}>Login</button>
         </div>
     );
 }

@@ -4,3 +4,7 @@ import { RestaurantCollection } from './RestaurantCollection'
 Meteor.publish('restaurants',()=>{
     return RestaurantCollection.find()
 })
+
+Meteor.publish('restaurants.tables',()=>{
+    return RestaurantCollection.find({},{fields:{tables}})
+})

@@ -9,11 +9,19 @@ export function Restaurant(){
 
     const isLoading = !useSubscribe('restaurants');
     
-    let restaurant = useTracker(()=>{
-        // check how to retreive single document
-        return RestaurantCollection.find({_id:tableId}).fetch()
-    })
+   
+    // let restaurant = useTracker(()=>{
+    //     // check how to retreive single document
+    //     return RestaurantCollection.find({_id:tableId}).fetch()
+    // })
 
+    let restaurant = useTracker(() => {
+        return RestaurantCollection.findOne({ _id: tableId });
+    });
+    
+
+    console.log("tableId",tableId)
+    console.log("restaurant",restaurant)
     const bookSeat = (_id,tableName,seat)=>{
         Meteor.call('bookSeat',{_id,tableName,seat})
     }
@@ -21,7 +29,7 @@ export function Restaurant(){
         <>{
             isLoading ? <div>Loading...</div> : <div style={{display:'flex' ,flexDirection:'column'}}>
             {
-                restaurant[0].tables.map((table,index)=>{
+                restaurant.tables.map((table,index)=>{
                    return(
                      <div key={index}  style={{display:'flex' ,marginBottom:'20px'}}>
                         <h1 style={{marginRight:'20px'}}>{table.tableName}</h1>
