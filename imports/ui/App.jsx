@@ -15,8 +15,6 @@ export const App = () => {
       <Route path='/' element={<Home />}/>
       <Route path='/book_seat/:id' element={user ? <Restaurant /> : <Login/> }/>
     </Routes>
-      
-        
     </BrowserRouter>
   )
 };

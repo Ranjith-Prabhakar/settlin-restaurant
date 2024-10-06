@@ -1,23 +1,28 @@
 import React from "react"
-import { Card } from "../Card/Card"
-import {useSubscribe,useTracker} from 'meteor/react-meteor-data'
+import RestaurantCard from "../Card/Card"
+import { useSubscribe, useTracker } from 'meteor/react-meteor-data'
 import { RestaurantCollection } from "../../../api/RestaurantCollection"
+import { Stack } from "@mui/material";
 
-export function Home(){
+export function Home() {
     const isLoading = !useSubscribe('restaurants');
-    
-    let restaurants = useTracker(()=>{
+
+    let restaurants = useTracker(() => {
         return RestaurantCollection.find().fetch()
     })
 
-    
+
 
     return (
         <>
-        {
-            isLoading ? <h1>loading...</h1> :
-            restaurants.map((restaurant) => <Card key={restaurant.name} restaurant={restaurant} />)
-        }
+            {
+                isLoading ? <h1>loading...</h1> :
+                    <Stack direction={"row"} spacing={2}>
+                        {
+                            restaurants.map((restaurant) => <RestaurantCard key={restaurant.name} restaurant={restaurant} />)
+                        }
+                    </Stack>
+            }
         </>
     )
 }

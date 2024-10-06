@@ -8,13 +8,7 @@ export function Restaurant(){
     const tableId = useParams().id
 
     const isLoading = !useSubscribe('restaurants');
-    
    
-    // let restaurant = useTracker(()=>{
-    //     // check how to retreive single document
-    //     return RestaurantCollection.find({_id:tableId}).fetch()
-    // })
-
     let restaurant = useTracker(() => {
         return RestaurantCollection.findOne({ _id: tableId });
     });
