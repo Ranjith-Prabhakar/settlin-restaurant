@@ -52,9 +52,17 @@
 
 import React, { useState } from "react";
 import { Meteor } from 'meteor/meteor';
-import { Box, Button, ButtonGroup, Stack, TextField, Typography } from "@mui/material";
+import { Button, ButtonGroup, Stack, TextField, Typography } from "@mui/material";
+import { useSubscribe, useTracker } from 'meteor/react-meteor-data'
+import { RestaurantCollection } from "../../../api/RestaurantCollection";
 
 export function Login() {
+    const isLoading = !useSubscribe('restaurants');
+
+    let restaurants = useTracker(() => {
+        return RestaurantCollection.find().fetch()
+    })
+
     const [loginOrSignUp, setLoginOrSignUp] = useState("login")
     const [loginMobile, setLoginMobile] = useState('')
     const [signUpMobile, setSignUpMobile] = useState('');
