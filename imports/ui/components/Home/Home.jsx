@@ -1,15 +1,27 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import RestaurantCard from "../Card/Card"
 import { useSubscribe, useTracker } from 'meteor/react-meteor-data'
 import { RestaurantCollection } from "../../../api/RestaurantCollection"
 import { Stack } from "@mui/material";
+import {Meteor} from 'meteor/meteor'
 
 export function Home() {
     const isLoading = !useSubscribe('restaurants');
+    const [restaurants,setRestaurants] = useState([])
 
-    let restaurants = useTracker(() => {
-        return RestaurantCollection.find().fetch()
-    })
+    useEffect(()=>{
+        Meteor.call("loadRestaurant",(err,result)=>{
+            if(!err){
+                console.log("result",result)
+                setRestaurants(result)
+            }
+        })
+    },[])
+   
+
+    // let restaurants = useTracker(() => {
+    //     return RestaurantCollection.find().fetch()
+    // })
 
 
     return (
