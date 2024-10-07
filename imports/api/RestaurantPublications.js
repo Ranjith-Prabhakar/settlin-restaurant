@@ -6,5 +6,5 @@ Meteor.publish('restaurants',()=>{
 })
 
 Meteor.publish('restaurants.tables',()=>{
-    return RestaurantCollection.find({},{fields:{tables}})
+    return RestaurantCollection.find({})
 })
