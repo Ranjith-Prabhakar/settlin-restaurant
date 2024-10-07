@@ -12,17 +12,11 @@ export function Home() {
     useEffect(()=>{
         Meteor.call("loadRestaurant",(err,result)=>{
             if(!err){
-                console.log("result",result)
                 setRestaurants(result)
             }
         })
     },[])
    
-
-    // let restaurants = useTracker(() => {
-    //     return RestaurantCollection.find().fetch()
-    // })
-
 
     return (
         <>

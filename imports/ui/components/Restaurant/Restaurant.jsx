@@ -17,21 +17,13 @@ export function Restaurant() {
     const tableId = useParams().id
 
     const isLoading = !useSubscribe('restaurants.tables', tableId);
-    // const isLoading = !useSubscribe('restaurants');
-    console.log("isLoading:", isLoading);
-    console.log("tableId:", tableId);
-
-
+   
     let restaurant = useTracker(() => {
         let result = RestaurantCollection.findOne({ _id: tableId });
-        console.log("result from Restaurant", result)
         return result
     }, [tableId]);
 
-    useEffect(() => {
-        console.log("restaurant", restaurant)
-    }, [restaurant])
-
+  
     const bookSeat = (_id, tableName, seat) => {
         Meteor.call('bookSeat', { _id, tableName, seat })
     }

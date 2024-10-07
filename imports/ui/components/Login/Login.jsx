@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import { Meteor } from 'meteor/meteor';
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import { useSubscribe, useTracker } from 'meteor/react-meteor-data'
-import { RestaurantCollection } from "../../../api/RestaurantCollection";
 
 export function Login() {
-    // const isLoading = !useSubscribe('restaurants');
-
-    // let restaurants = useTracker(() => {
-    //     return RestaurantCollection.find().fetch()
-    // })
-
     const [loginOrSignUp, setLoginOrSignUp] = useState("login")
     const [loginMobile, setLoginMobile] = useState('')
     const [signUpMobile, setSignUpMobile] = useState('');
@@ -20,29 +12,28 @@ export function Login() {
     }
 
     const handleRegister = () => {
-        Meteor.call('createNewUser', { userName: signUpMobile }, (error, result) => {
+        Meteor.call('createNewUser', { userName: signUpMobile }, (error) => {
             if (error) {
-                alert(error.reason); // Show an error message if user already exists
+                alert(error.reason);
             } else {
-                // alert('User registered successfully! User ID: ' + result);
                 Meteor.loginWithPassword(signUpMobile, signUpMobile)
             }
         });
     };
 
-    const switchComponent = (status)=>{
-        if(status === "login"){
-            console.log("Login")
+    const switchComponent = (status) => {
+        if (status === "login") {
             setLoginOrSignUp('login')
-        }else{
-            console.log("SignUp")
+        } else {
             setLoginOrSignUp('singUp')
         }
     }
 
     return (
         <Stack>
-              {loginOrSignUp === "login" ? <Stack
+            {loginOrSignUp === "login" ? 
+            // login
+            <Stack
                 spacing={2}
                 sx={{
                     justifyContent: "center",
@@ -55,10 +46,11 @@ export function Login() {
                     value={loginMobile}
                     onChange={(e) => setLoginMobile(e.target.value)} />
                 <Button sx={{ width: '25%' }} variant="contained" onClick={handleLogin}>Login</Button>
-                <Button onClick={()=>switchComponent("signUp")}>
-                    <Typography  sx={{textTransform:'capitalize'}}>don't have an account?</Typography>
+                <Button onClick={() => switchComponent("signUp")}>
+                    <Typography sx={{ textTransform: 'capitalize' }}>don't have an account?</Typography>
                 </Button>
             </Stack> :
+            // sign up
                 <Stack
                     spacing={2}
                     sx={{
@@ -73,8 +65,8 @@ export function Login() {
                         onChange={(e) => setSignUpMobile(e.target.value)} />
                     <Button sx={{ width: '25%' }} variant="contained" onClick={handleRegister}>Sign up</Button>
 
-                    <Button  onClick={() => switchComponent('login')} >
-                        <Typography sx={{textTransform:'capitalize'}}>already have an account?</Typography>
+                    <Button onClick={() => switchComponent('login')} >
+                        <Typography sx={{ textTransform: 'capitalize' }}>already have an account?</Typography>
                     </Button>
                 </Stack>
             }

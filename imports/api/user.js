@@ -4,7 +4,6 @@ import { Accounts } from 'meteor/accounts-base';
 
 Meteor.methods({
     async 'createNewUser'({ userName }) {
-        // Validate the input
         new SimpleSchema({
             userName: { type: String },
         }).validate({ userName });
@@ -14,9 +13,8 @@ Meteor.methods({
         if (existingUser) {
             throw new Meteor.Error('user-exists', 'User already exists');
         } else {
-            // Create the new user
-            const userId = await Accounts.createUser({ username: userName, password: userName });
-            return userId; // Return the new user's ID
+            const userId = Accounts.createUser({ username: userName, password: userName });
+            return userId; 
         }
     }
 });
