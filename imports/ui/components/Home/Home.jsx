@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import RestaurantCard from "../Card/Card"
 import { useSubscribe, useTracker } from 'meteor/react-meteor-data'
 import { RestaurantCollection } from "../../../api/RestaurantCollection"
@@ -10,7 +10,6 @@ export function Home() {
     let restaurants = useTracker(() => {
         return RestaurantCollection.find().fetch()
     })
-
 
 
     return (

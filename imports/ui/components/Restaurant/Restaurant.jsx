@@ -16,15 +16,13 @@ import { Button, Typography,Stack } from "@mui/material"
 export function Restaurant() {
     const tableId = useParams().id
 
+    // const isLoading = !useSubscribe('restaurants.tables');
     const isLoading = !useSubscribe('restaurants');
 
     let restaurant = useTracker(() => {
         return RestaurantCollection.findOne({ _id: tableId });
     });
-
-
-    console.log("tableId", tableId)
-    console.log("restaurant", restaurant)
+   
     const bookSeat = (_id, tableName, seat) => {
         Meteor.call('bookSeat', { _id, tableName, seat })
     }
@@ -57,7 +55,6 @@ export function Restaurant() {
                                             </TableCell>
                                         ))}
                                     </TableRow>
-
                                 )
                             })
                         }
