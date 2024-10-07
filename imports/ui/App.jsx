@@ -5,6 +5,7 @@ import { Login } from './components/Login/Login.jsx';
 import { Home } from './components/Home/Home.jsx';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Restaurant } from './components/Restaurant/Restaurant.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
 
 
 export const App = () => {
@@ -12,8 +13,10 @@ export const App = () => {
   return(
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />}/>
+      <Route path='/' element={<Navbar/>}>
+      <Route index element={<Home />}/>
       <Route path='/book_seat/:id' element={user ? <Restaurant /> : <Login/> }/>
+      </Route>
     </Routes>
     </BrowserRouter>
   )
