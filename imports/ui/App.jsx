@@ -6,12 +6,14 @@ import { Home } from './components/Home/Home.jsx';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Restaurant } from './components/Restaurant/Restaurant.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 export const App = () => {
   const user = useTracker(() => Meteor.user());
   return(
     <BrowserRouter>
+    <CssBaseline />
     <Routes>
       <Route path='/' element={<Navbar/>}>
       <Route index element={<Home />}/>
